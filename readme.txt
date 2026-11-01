@@ -40,8 +40,3 @@ SUPPORTED FEATURES
 TESTING
 The compiler was tested against the 10 instructor-provided test cases and includes Rust unit tests.
 
-GITHUB REPOSITORY
-[Insert your public GitHub repository URL here]
-
-AI ASSISTANCE
-[Add the required 2-3 sentences describing AI assistance and the associated transcript information before submission.]
