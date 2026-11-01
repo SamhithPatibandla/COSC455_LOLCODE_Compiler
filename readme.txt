@@ -40,3 +40,6 @@ SUPPORTED FEATURES
 TESTING
 The compiler was tested against the 10 instructor-provided test cases and includes Rust unit tests.
 
+GITHUB REPOSITORY:
+https://github.com/SamhithPatibandla/COSC455_LOLCODE_Compiler
+
