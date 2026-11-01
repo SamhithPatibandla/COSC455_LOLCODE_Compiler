@@ -1,0 +1,16 @@
+#HAI
+#MAEK HEAD
+#GIMMEH TITLE My LOLCODE Page #OIC
+#MKAY
+#IHAZ answer #ITIZ happiness #MKAY
+#MAEK PARAGRAF
+This is a #GIMMEH BOLD compiler demonstration #OIC
+#NEWLINE
+Global answer is #GIMMEH VAR answer #OIC
+#MKAY
+#MAEK LIST
+#GIMMEH ITEM Rust #OIC
+#GIMMEH ITEM LOLCODE #OIC
+#MKAY
+#GIMMEH LINX https://example.com #OIC
+#KBYE

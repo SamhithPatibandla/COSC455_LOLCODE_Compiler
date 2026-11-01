@@ -1,0 +1,184 @@
+LOLCODE_BNF.txt
+
+
+<lolcode> ::= HAI <document-content> KBYE
+
+
+<document-content> ::= <variable-definition> <body-content>
+                     | <comment> <after-leading-comment>
+                     | <head> <body-content>
+                     | <body-start>
+
+
+<after-leading-comment> ::= <comment> <after-leading-comment>
+                          | <head> <body-content>
+                          | <body-start>
+
+
+<body-start> ::= <body-noncomment-element> <body-content>
+               | ε
+
+
+<head> ::= HEAD_START <head-content> MKAY
+
+
+<head-content> ::= <comment> <head-content>
+                 | <title> <head-after-title>
+                 | ε
+
+
+<head-after-title> ::= <comment> <head-after-title>
+                     | ε
+
+
+<title> ::= TITLE_START <plain-text> OIC
+
+
+<body-content> ::= <body-element> <body-content>
+                 | ε
+
+
+<body-element> ::= <text>
+                 | <comment>
+                 | <paragraph>
+                 | <bold>
+                 | <list>
+                 | <newline>
+                 | <link>
+                 | <variable-use>
+
+
+<body-noncomment-element> ::= <text>
+                            | <paragraph>
+                            | <bold>
+                            | <list>
+                            | <newline>
+                            | <link>
+                            | <variable-use>
+
+
+<comment> ::= COMMENT_START <plain-text> COMMENT_END
+
+
+<paragraph> ::= PARAGRAPH_START <paragraph-start> MKAY
+
+
+<paragraph-start> ::= <variable-definition> <paragraph-content>
+                    | <paragraph-content>
+
+
+<paragraph-content> ::= <paragraph-element> <paragraph-content>
+                      | ε
+
+
+<paragraph-element> ::= <text>
+                      | <comment>
+                      | <bold>
+                      | <list>
+                      | <newline>
+                      | <link>
+                      | <variable-use>
+
+
+<bold> ::= BOLD_START <bold-content> OIC
+
+
+<bold-content> ::= <text> <bold-content>
+                 | <variable-use> <bold-content>
+                 | ε
+
+
+<list> ::= LIST_START <list-items> MKAY
+
+
+<list-items> ::= <item> <more-list-items>
+
+
+<more-list-items> ::= <item> <more-list-items>
+                    | ε
+
+
+<item> ::= ITEM_START <item-start> OIC
+
+
+<item-start> ::= <variable-definition> <item-content>
+               | <item-content>
+
+
+<item-content> ::= <item-element> <item-content>
+                 | ε
+
+
+<item-element> ::= <text>
+                 | <bold>
+                 | <variable-use>
+
+
+<newline> ::= NEWLINE
+
+
+<link> ::= LINK_START <address> OIC
+
+
+<address> ::= <text-unit> <address-tail>
+
+<address-tail> ::= <text-unit> <address-tail>
+                 | ε
+
+<variable-definition> ::= VAR_DEF_START <variable-name> ITIZ <value> MKAY
+
+<variable-use> ::= VAR_USE_START <variable-name> OIC
+
+<variable-name> ::= WORD
+
+<value> ::= <text-unit> <value-tail>
+
+<value-tail> ::= <text-unit> <value-tail>
+               | ε
+
+<plain-text> ::= <text-unit> <plain-text-tail>
+
+<plain-text-tail> ::= <text-unit> <plain-text-tail>
+                    | ε
+
+<text> ::= <text-unit>
+
+<text-unit> ::= WORD
+              | NUMBER
+              | PUNCTUATION
+
+Terminal Symbols:
+
+HAI             = #HAI
+KBYE            = #KBYE
+
+COMMENT_START   = #OBTW
+COMMENT_END     = #TLDR
+
+HEAD_START      = #MAEK HEAD
+TITLE_START     = #GIMMEH TITLE
+
+PARAGRAPH_START = #MAEK PARAGRAF
+
+BOLD_START      = #GIMMEH BOLD
+
+LIST_START      = #MAEK LIST
+ITEM_START      = #GIMMEH ITEM
+
+NEWLINE         = #NEWLINE
+
+LINK_START      = #GIMMEH LINX
+
+VAR_DEF_START   = #IHAZ
+ITIZ            = #ITIZ
+
+VAR_USE_START   = #GIMMEH VAR
+
+MKAY            = #MKAY
+OIC             = #OIC
+
+WORD            = one or more upper- or lowercase letters
+NUMBER          = one or more digits
+PUNCTUATION     = , . " : ? ! % = /
+
+Note: All LOLCODE annotation terminals are case-insensitive.

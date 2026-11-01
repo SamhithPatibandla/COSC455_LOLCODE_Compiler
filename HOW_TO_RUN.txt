@@ -1,0 +1,4 @@
+Copy the test folder and run_official_tests.ps1 into the Rust project folder (beside Cargo.toml).
+Then run from PowerShell:
+  powershell -ExecutionPolicy Bypass -File .\run_official_tests.ps1
+This builds release and runs all ten original test inputs.

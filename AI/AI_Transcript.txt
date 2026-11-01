@@ -1,0 +1,105 @@
+COSC 455 - LOLCODE Compiler
+SELECTED AI CONVERSATION EXCERPTS
+
+DOCUMENTATION NOTE
+This file contains selected, shortened excerpts from actual ChatGPT conversations about the LOLCODE compiler. It is not a complete transcript or a complete account of AI involvement. Ellipses and [excerpt] indicate omitted portions of the original messages. The selected exchanges emphasize Rust troubleshooting, compiler implementation concepts, and testing. Consult the original conversations if a complete transcript is required.
+
+============================================================
+EXCERPT 1 - RUST MUTABLE BORROW ERROR (E0499)
+============================================================
+USER [excerpt]:
+"I tried running it and got errors:
+
+error[E0499]: cannot borrow `*self` as mutable more than once at a time
+  --> src\lexer.rs:53:27
+   |
+53 |             self.add_char(self.get_char());
+   |             ---- -------- ^^^^ second mutable borrow occurs here"
+
+ASSISTANT [excerpt]:
+"These are Rust borrowing errors (E0499). Both errors come from trying to call two methods that require mutable access to `self` in the same expression.
+
+The fix is simple: store the character in a variable first, then pass it to `add_char()`."
+
+Suggested correction:
+    let c = self.get_char();
+    self.add_char(c);
+
+============================================================
+EXCERPT 2 - AUTOMATED LEXER TESTING
+============================================================
+USER:
+"next"
+
+ASSISTANT [excerpt]:
+"Now that we've fixed the Rust borrowing errors, our next step is to finish testing the lexical analyzer and prepare it for the recursive-descent parser."
+
+Suggested command:
+    cargo test
+
+The discussion covered tests for single-word and two-word annotations, case-insensitive annotations, plain text, and invalid annotations.
+
+============================================================
+EXCERPT 3 - TOKEN TYPES AND ONE-TOKEN LOOKAHEAD
+============================================================
+USER [excerpt]:
+"This is currently how it looks:"
+[User supplied Rust code for the lexer and main.rs.]
+
+ASSISTANT [excerpt]:
+"Your `lexer.rs` and `main.rs` look correct for the lexical-analysis testing stage. The output you received is exactly what we'd expect from your sample LOLCODE program."
+
+ASSISTANT [excerpt]:
+"The `current_token()` method provides one-token lookahead, meaning the parser can examine the next token without consuming it."
+
+============================================================
+EXCERPT 4 - TEST COUNT TROUBLESHOOTING
+============================================================
+USER:
+"For some reason when i run cargo test its only running 14 tests, not 19"
+
+ASSISTANT [excerpt]:
+"Your code is running 14 tests because your `parser.rs` is missing the five new automated tests. You successfully added the bold and list parsing methods, but the tests themselves were never added."
+
+Suggested diagnostic command:
+    cargo test -- --list
+
+============================================================
+EXCERPT 5 - VARIABLE SCOPE CHECKS
+============================================================
+USER:
+"do the next steps and give the new full changed codes"
+
+ASSISTANT [excerpt]:
+"The parser now handles variable definitions using:
+
+#IHAZ answer #ITIZ 42 #MKAY
+
+It also recognizes variable references:
+
+#GIMMEH VAR answer #OIC"
+
+ASSISTANT [excerpt]:
+"The first variable reference resolves to `42`, while the second resolves to `happiness`."
+
+The surrounding discussion addressed lexical scope and variable shadowing between a paragraph and its surrounding document.
+
+============================================================
+EXCERPT 6 - INTENTIONAL ERROR TESTS
+============================================================
+USER:
+"Just to clarify, when i run cargo run -- test/Test4.lol it outputs error: process didn't exit successfully: `target\debug\lolcompiler.exe test/Test4.lol` (exit code: 1)
+
+Same for cargo run -- test/Test7.lol.
+
+is this supposed to happen"
+
+ASSISTANT [excerpt]:
+"Yes, that is supposed to happen! Both Test 4 and Test 7 contain intentional errors, so your compiler should reject them."
+
+ASSISTANT [excerpt]:
+"One important detail: exit code 1 alone doesn't prove that the compiler detected the correct error. You should also see an error message immediately before Cargo's process-failure message."
+
+============================================================
+END OF SELECTED EXCERPTS
+============================================================
